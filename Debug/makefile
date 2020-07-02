@@ -10,6 +10,7 @@ RM := rm -rf
 -include sources.mk
 -include src/subdir.mk
 -include CFigure/subdir.mk
+-include CContainer/subdir.mk
 -include subdir.mk
 -include objects.mk
 
@@ -39,19 +40,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: SpaceInvaders++
+all: SpaceInvarders++
 
 # Tool invocations
-SpaceInvaders++: $(OBJS) $(USER_OBJS)
+SpaceInvarders++: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++  -o "SpaceInvaders++" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++  -o "SpaceInvarders++" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(C_UPPER_DEPS)$(CXX_DEPS)$(OBJS)$(CPP_DEPS)$(C_DEPS) SpaceInvaders++
+	-$(RM) $(CC_DEPS)$(C++_DEPS)$(EXECUTABLES)$(C_UPPER_DEPS)$(CXX_DEPS)$(OBJS)$(CPP_DEPS)$(C_DEPS) SpaceInvarders++
 	-@echo ' '
 
 .PHONY: all clean dependents

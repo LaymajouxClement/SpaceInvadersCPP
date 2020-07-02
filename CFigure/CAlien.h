@@ -1,22 +1,22 @@
 /*
- * CShip.h
+ * CAlien.h
  *
- *  Created on: 29 juin 2020
+ *  Created on: 1 juil. 2020
  *      Author: eleve
  */
 
-#ifndef CSHIP_H_
-#define CSHIP_H_
+#ifndef CALIEN_H_
+#define CALIEN_H_
 
 #include <CFigure.h>
 
-class CShip : public CFigure {
+class CAlien : public CFigure {
 private:
 	static SDL_Texture * c_pTexture;
 public:
 
-	CShip();
-	CShip(
+	CAlien();
+	CAlien(
 			int iLocX,
 			int iLocY,
 			int iWidth,
@@ -26,11 +26,9 @@ public:
 			int ispeedX,
 			int ispeedY
 		); // Constructeur surcharge
-	~CShip();
+	~CAlien();
 
 	void Draw() const;
-	int Move(int iLocx,int iLocY);
-
 
 
 public:
@@ -48,15 +46,26 @@ public:
 		return;
 
 	}
-	static CShip*DeleteFunc(CShip*pShip){
-			delete pShip;
-			return nullptr;
-		}
+	static CAlien*DeleteFunc(CAlien*pAlien){
+		delete pAlien;
+		return nullptr;
+	}
 
-		static CShip*DrawFunc(CShip*pShip, void*pParam){
-			pShip->Draw();
-			return pShip;
-			}
+	static CAlien*DrawFunc(CAlien*pAlien, void*pParam){
+			pAlien->Draw();
+			return pAlien;
+	}
+	static CAlien*MoveFunc(CAlien*pAlien, void*pParam){
+			pAlien->Move();
+			return pAlien;
+	}
+	static CAlien*ScrollFunc(CAlien*pAlien, int speedVrt){
+			pAlien->m_speed.x *= -1;
+			pAlien->m_frame.y += speedVrt;
+			CFigure::clrOverflows();
+			return pAlien;
+	}
+
 };
 
-#endif /* CSHIP_H_ */
+#endif /* CALIEN_H_ */

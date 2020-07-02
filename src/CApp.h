@@ -4,6 +4,7 @@
  *  Created on: 29 juin 2020
  *      Author: eleve
  */
+
 #ifndef CAPP_H_
 #define CAPP_H_
 
@@ -11,23 +12,32 @@
 #include "CFigure.h"
 #include "CShip.h"
 
+#include "CContainer.h"
+
 class CApp {
 private:
 	Uint32				m_uStatus;
-	SDL_Window 	 	*	m_pWindow;
+	SDL_Window		*	m_pWindow;
 	Uint32				m_uWindowID;
 	SDL_Renderer	*	m_pRenderer;
-	SDL_Texture	 	*	m_pTextureBkgnd;
+	SDL_TimerID			m_nTimerID;
+	SDL_Texture		*	m_pBkgndTexture;
 
-	CShip 				m_ship{200,50,50,50,10,10,0,0};
+	CShip			*	m_pShip;
+
+	CContainer		*	m_pAliens;
+	CContainer		*   m_pShipRockets;
+
 
 public:
 	CApp();
 	~CApp();
 
+private:
 	void Run(void*pParam);
+	bool IsInitiated() const; // il s'agit ici d'un "getter"
 
-	bool IsInitiated() const;
+	static Uint32 AnimateCallback (Uint32 interval, void*param);
 };
 
 #endif /* CAPP_H_ */
